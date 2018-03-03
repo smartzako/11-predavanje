@@ -1,0 +1,5 @@
+cron:
+- description: Dokoncni izbris tem enkrat na teden
+  url: /cron/izbris-tem
+  schedule: every sunday 03:00
+  timezone: Europe/Ljubljana

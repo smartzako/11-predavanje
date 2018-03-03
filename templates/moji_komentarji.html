@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block vsebina %}
+
+<h1>Moji komentarji</h1>
+
+{% if not moji_komentarji %}
+<p>Nimas komentarjev.</p>
+{% endif %}
+
+{% for komentar in moji_komentarji %}
+<p><a href="/preglej-objavo/{{ komentar.objava_id }}">{{ komentar.naslov_teme() }}</a> - {{ komentar.vsebina[:10] }}...</p>
+{% endfor %}
+
+{% endblock %}

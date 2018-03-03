@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block css %}
+    <style>
+        .zelen-tekst {
+            color: green;
+        }
+    </style>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function () {
+
+            let $jumbotron = $(".jumbotron");
+
+            let $klikniMeGumb = $("#klikni-me");
+            $klikniMeGumb.click(function spremeniBarvo() {
+                $jumbotron.css("background-color", "red");
+                $jumbotron.fadeToggle(200);
+            });
+            $klikniMeGumb.mouseover(function () {
+                $jumbotron.addClass("zelen-tekst");
+            });
+            $klikniMeGumb.mouseout(function () {
+                $jumbotron.removeClass("zelen-tekst");
+            });
+
+        });
+    </script>
+{% endblock %}
+
+{% block vsebina %}
+
+    <div class="jumbotron">
+        <h1>Ninja Tech Forum</h1>
+        <p>Dobrodošli na Ninja Tech Forumu!</p>
+    </div>
+
+    <button id="klikni-me">Klikni me</button>
+
+{% endblock %}

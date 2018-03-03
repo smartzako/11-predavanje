@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+
+{% block javascript %}
+    <script>
+        $(document).ready(function () {
+
+            $("h2").mouseover(function () {
+                let idObjave = $(this).attr("id");
+
+                $.get("/st-komentarjev/123", function(vsebina) {
+                    console.log(vsebina);
+
+                    $("#st-komentarjev-" + idObjave).text(vsebina);
+
+                });
+            });
+        });
+    </script>
+{% endblock %}
+
+
+{% block vsebina %}
+
+<h1>Pregled objav</h1>
+
+<p><a href="/dodaj-objavo" class="btn btn-success">Dodaj novo objavo</a></p>
+
+{% for objava in objave %}
+
+    <div class="jumbotron">
+        <h2 id="{{ objava.key.id() }}"><a href="/preglej-objavo/{{ objava.key.id() }}">{{ objava.naslov }}</a></h2>
+        <div id="st-komentarjev-{{ objava.key.id() }}"></div>
+        <p>{{ objava.vsebina }}</p>
+        <small>Avtor: {{ objava.uporabnik_email }}</small>&nbsp;&nbsp;&nbsp;&nbsp;
+        <small>Objavljeno: {{ objava.cas_objave }}</small>
+    </div>
+
+{% endfor %}
+
+{% endblock %}
